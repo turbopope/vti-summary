@@ -7,6 +7,11 @@ header-includes:
     - \newcommand{\gotchas}{\underline{Gotchas!}}
 ...
 
+# Q&A Questions
+
+* Flow chart notation for multi-tape machines? Doesn't seem to be defined in the lecture.
+
+
 # Introduction
 
 

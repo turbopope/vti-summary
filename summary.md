@@ -31,7 +31,7 @@ The DTM **halts** when it enters the halting state $h$.
 
 It **hangs** when you make it go beyond the left edge of the tape. We shall this **crash** instead, because that's less confusable with halting.
 
-It may loop infinitely sometimes. Does that mean it crashed? Who knows! TODO pls
+If the machine loops infinitely, it neither halts nor crashes.
 
 \gotchas
 

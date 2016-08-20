@@ -11,6 +11,8 @@ header-includes:
 
 * Flow chart notation for multi-tape machines? Doesn't seem to be defined in the lecture.
 
+* Is there a no-op machine? We can define our own $\mathcal{M}_{nop}$ with $>RL$ or something, but that's kinda clunky.
+
 
 # Introduction
 
@@ -36,7 +38,7 @@ The DTM **halts** when it enters the halting state $h$.
 
 It **hangs** when you make it go beyond the left edge of the tape. We shall this **crash** instead, because that's less confusable with halting.
 
-If the machine loops infinitely, it neither halts nor crashes.
+The DTM **terminates** if it halts or crashes. If the machine loops infinitely, it doesn't terminate, halt or crash.
 
 \gotchas
 
@@ -47,7 +49,37 @@ If the machine loops infinitely, it neither halts nor crashes.
 * A single input word cannot have blanks in it, but you can give multiple input words separated by blanks. The machine of course cannot distinguish between those two cases. Good.
 * The machine can't move and write a symbol in a single step. That would be too convenient. Hope you like creating temporary states.
 
-## Float Chart Notation
+## Flow Chart Notation
+
+Combines a bunch of machines. When one halts, the next starts. Arrows are used for decisions.
+
+$>$ marks the start state. $L$ goes one space left, $R$ goes one space right.
+
+$L_\#$ and $R_\#$ go left/right until they reach a blank. Small gotcha: they check *after* each step, so at minimum one space is moved. This is usually what you want though.
+
+Any letter $\in \Sigma$ writes that letter onto the tape.
+
+Arrows dictate flow. Bare arrows just transfer control to another machine, and they may be omitted if the flow is linear. Arrows with conditions on them decide on the flow.
+
+TODO: What happens when you don't cover all conditions? Is it even a legal machine (since $\delta$ should be total)? Does it just crash when the condition happens?
+
+## Languages
+
+A **language** $L$ is a set of letter combinations from $\Sigma$.
+
+A DTM **accepts** a language if it halts in the **magical acceptance state** (see gotchas). If it halts in a different state or crashes or doesn't terminate, then it doesn't accept the language.
+
+A DTM **decides** a language if it halts with $\#Y\underline{\#}$ if the input is $\in L$ and halts with $\#N\underline{\#}$ otherwise. That is, as opposed to acceptance, the machine always terminates.
+
+A DTM **enumerates** a language if TODO some really strange blink state stuff? It's supposed to mean that the machine produces every word of the language, but the definition is just weird.
+
+A language is **recursively enumerable** if there exists a DTM that enumerates it.
+
+TODO more language properties
+
+\gotchas
+
+* The magical acceptance state looks like this: $\#w\underline{\#}$. That is, the tape just contains the input word and the tape head is one space to the right of that word.
 
 
 # Register Machines

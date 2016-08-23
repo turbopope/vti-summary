@@ -48,6 +48,7 @@ The DTM **terminates** if it halts or crashes. If the machine loops infinitely, 
 * $\delta$ must be totally defined because Gabe Newell. But you can make the machine hang explicitly by making it go left until it hangs. Which has the same effect as making $\delta$ not total. Which means this artificial restriction is retarded.
 * A single input word cannot have blanks in it, but you can give multiple input words separated by blanks. The machine of course cannot distinguish between those two cases. Good.
 * The machine can't move and write a symbol in a single step. That would be too convenient. Hope you like creating temporary states.
+* Sometimes halting gets called holding because I guess spelling is for weenies.
 
 ## Flow Chart Notation
 
@@ -75,11 +76,34 @@ A DTM **enumerates** a language if TODO some really strange blink state stuff? I
 
 A language is **recursively enumerable** if there exists a DTM that enumerates it.
 
-TODO more language properties
+A languge $L_1$ is **reducible** to a language $L_2$ if you can find a function that transforms every word in $L_1$ to some word in $L_2$.
+
+From these we can derive the following:
+
+**Every decidable language is acceptable.** Proof is trivial, just wrap your decision machine into an acceptance machine.
+
+**The complement of every language is decidable.** Trivial again, just swap the $Y$ and the $N$ of your decision machine.
+
+**$L$ is decidable if $L$ and its complement are acceptable.** Proof: know that turing machines can simulate turing machines. Then build a turing machine that runs your two acceptance machines side by side, stepping each one forward alternatingly. If the machine for $L$ halts, you write $Y$, if the complement halts, you write $N$.
+
+**$L$ recursively enumerable $\Leftrightarrow$ $L$ is acceptable**.
+
+Proof for $\Rightarrow$: let your recursive enumeration machine run and look at every word it produces. If a word matches the input, accept it. Otherwise keep running forever.
+
+Proof for $\Leftarrow$: I have an idea but it's stupid and hard to explain. You make a machine that iterates every possible word from $\Sigma$. This is trivial, because alphabets are always finite. For example for $\Sigma = \lbrace a, b \rbrace$, you get $\epsilon, a, b, aa, ba, ab, bb, ...$. For each of these words, you start a new instance of your acceptance machine and let it run one step. Every machine you created for the previous word is also moved forward one step. If one of your machine halts and accepts the word, you're done. So for example:
+
+1. Get $\epsilon$, create a new acceptance machine for it and run it one step.
+2. Get $a$, create a new machine and run it one step. Also run the machine for $\epsilon$ another step.
+3. Get $b$, create a new machine, run the other two ones another step.
+4. Etc. pp., either until one of your machines accepts or ad nauseam.
+
+While this would require ridiculous amounts of memory and take ages, it's still finite for accepted words, so q.e.d.
 
 \gotchas
 
 * The magical acceptance state looks like this: $\#w\underline{\#}$. That is, the tape just contains the input word and the tape head is one space to the right of that word.
+
+* We overload the $\leq$ operator for reducability. So $L_1 \leq L_2$ means that $L_1$ is reducible to $L_2$. This is different from $L_1 \subseteq L_2$, which looks confusingly similar. And $L_1 \subseteq L_2$ implies $L_1 \leq L_2$, but not the other way round.
 
 
 # Register Machines

@@ -19,6 +19,8 @@ header-includes:
 
 * Do I need to zero out “unused” registers that I don't want to output?
 
+* Why can't I call functions in pseudocode?
+
 
 # Introduction
 
@@ -136,6 +138,7 @@ I'm going by the [official register machine definitions](https://userpages.uni-k
     * Pseudocode uses curly braces, register machines use `do ... end`.
     * Pseudocode requires parentheses around `if` and `while` conditions, in register machines they are illegal.
     * Recursive function calls are illegal in pseudocode because Gabe Newell again.
+    * In Pseudocode, you can define functions, but you can't call them.
 
 
 # Recursive Functions

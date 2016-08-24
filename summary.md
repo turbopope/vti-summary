@@ -19,7 +19,7 @@ header-includes:
 
 * Do I need to zero out “unused” registers that I don't want to output?
 
-* Why can't I call functions in pseudocode?
+* How do I call sub-programs in LOOP/WHILE/GOTO? How do I call subroutines in Pseudocode?
 
 
 # Introduction

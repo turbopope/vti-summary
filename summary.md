@@ -13,6 +13,12 @@ header-includes:
 
 * Is there a no-op machine? We can define our own $\mathcal{M}_{nop}$ with $>RL$ or something, but that's kinda clunky.
 
+* What's up with the weird required `else` in LOOP and illegal `else` in WHILE?
+
+* If the `else` is actually required in LOOP, why is there no no-op statement?
+
+* Do I need to zero out “unused” registers that I don't want to output?
+
 
 # Introduction
 
@@ -102,11 +108,34 @@ While this would require ridiculous amounts of memory and take ages, it's still 
 \gotchas
 
 * The magical acceptance state looks like this: $\#w\underline{\#}$. That is, the tape just contains the input word and the tape head is one space to the right of that word.
-
 * We overload the $\leq$ operator for reducability. So $L_1 \leq L_2$ means that $L_1$ is reducible to $L_2$. This is different from $L_1 \subseteq L_2$, which looks confusingly similar. And $L_1 \subseteq L_2$ implies $L_1 \leq L_2$, but not the other way round.
 
 
 # Register Machines
+
+\gotchas
+
+Register machines consist of nothing but gotchas. I doubt the lecture or the tutorial get them right according to their own definitions either.
+
+I'm going by the [official register machine definitions](https://userpages.uni-koblenz.de/~mbender/teaching/16ss_actcs/rm_instr.pdf) here. The lecture might say things differently, but according to the tutorial, the tutorial's definition is the one and only truth.
+
+* Semicolons in register machines **separate** statements, they do not terminate them. So a trailing `;` at the end of a program or a block is illegal.
+* Blocks are statements, so they require a semicolon after their `end`. Unless it's the last statement in a program or block.
+* No negative numbers. If subtraction would give you a negative number, it turns into $0$ instead.
+* `while` can only test $x_i \neq 0$, no other conditions are allowed.
+* `if` is completely retarded:
+    * In LOOP, `if` can check $x_i = 0$ and $x_i \leq x_j$. In WHILE and GOTO, it can only check $x_i = 0$, comparing registers isn't allowed.
+    * In LOOP, an `else` branch is **required**. In WHILE and GOTO, it's **illegal**.
+        * Also, every block has at least one statement, so you can't leave your `else` block empty.
+        * And no, there's no no-op statement either.
+    * In GOTO, there is no `then` after the `if`'s condition because who needs consistency.
+* We also have a special [pseudocode definition](https://userpages.uni-koblenz.de/~mbender/teaching/16ss_actcs/pseudocode.pdf), which is similar, but stupidly inconsistent with register machines:
+    * Pseudocode doesn't use semicolons at all.
+    * Pseudocode variables start at $x_0$, but registers start at $x_1$. Yes, really.
+    * Pseudocode allows negative numbers, register machines don't.
+    * Pseudocode uses curly braces, register machines use `do ... end`.
+    * Pseudocode requires parentheses around `if` and `while` conditions, in register machines they are illegal.
+    * Recursive function calls are illegal in pseudocode because Gabe Newell again.
 
 
 # Recursive Functions

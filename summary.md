@@ -138,6 +138,7 @@ I'm going by the [official register machine definitions](https://userpages.uni-k
     * Pseudocode uses curly braces, register machines use `do ... end`.
     * Pseudocode requires parentheses around `if` and `while` conditions, in register machines they are illegal.
     * Recursive function calls are illegal in pseudocode because Gabe Newell again.
+    * You can compare numbers, but only with $=, ~ <$ and $\leq$. But $\neq$, $>$ and $\geq$ don't exist.
 
 
 # Recursive Functions

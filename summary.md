@@ -146,5 +146,27 @@ I'm going by the [official register machine definitions](https://userpages.uni-k
 
 # Computability and (Un-)Decidability
 
+## Rice's Theorem
+
+$\mathcal{L}_{0,\Sigma}$ is the set of all languages of type 0 (arbitrary grammar).
+
+$P$ a set of languages that describes some language property. $I(P)$ is the set of languages that fulfills property $P$.
+
+**Rice's theorem** says: for every *non-trivial* property $P$, it is undecidable if a language accepted by a TM has that property.
+
+In this case, non-trivial means that $I(P) \neq \emptyset$ and $I(P) \neq \mathcal{L}_{0,\Sigma}$. Examples:
+
+* $L$ is infinite: non-trivial
+* $L$ is acceptable: non-trivial
+* $L$ uses more than one letter: non-trivial
+* $L$ is of type 0: trivial, because it's $\mathcal{L}_{0,\Sigma}$
+* $L$ is blue: trivial, because it's nonsense, so it's $\emptyset$
+
+Proving things like exercise 9.4 is super easy:
+
+1. Find a language that has the property $P$ (so $I(P) \neq \emptyset$)
+2. Find a language that doesn't (so $I(P) \neq \mathcal{L}_{0,\Sigma}$)
+3. $\Rightarrow$ $P$ is non-trivial, Rice says q.e.d.
+
 
 # Complexity

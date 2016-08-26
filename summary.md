@@ -143,6 +143,12 @@ I'm going by the [official register machine definitions](https://userpages.uni-k
 
 # Recursive Functions
 
+\gotchas
+
+* The syntax is horrible and completely unreadable.
+* Also what even is the idea behind primitive recursion?
+* Dito for $\mu$ recursion. It's like they entered our world from the Æther and nobody knows how they came to be.
+
 
 # Computability and (Un-)Decidability
 
@@ -167,6 +173,44 @@ Proving things like exercise 9.4 is super easy:
 1. Find a language that has the property $P$ (so $I(P) \neq \emptyset$)
 2. Find a language that doesn't (so $I(P) \neq \mathcal{L}_{0,\Sigma}$)
 3. $\Rightarrow$ $P$ is non-trivial, Rice says q.e.d.
+
+## Logic
+
+The set of valid formulas in propositional logic (Aussagenlogik) is decidable.
+
+The set of valid formulas in first-order logic (Prädikatenlogik) is undecidable. Proof was like you can simulate a TM with it or something and therefore it's undecidable.
+
+## Post Correspondence Problem (PCP)
+
+A **correspondence system** $P$ is a finite set of pairs of strings over an alphabet $\Sigma$: $P = \lbrace (p_1, q_1), ... (p_n, q_n) \rbrace, ~ p_i, q_i \in \Sigma^*$.
+
+This system can be **solved** by finding a sequence of indexes $\mathcal{I} = i_1 ... i_m$, so that the concatenation $p_\mathcal{I} = p_{i_1} ... p_{i_m}$ is equal to the concatenation of $q_\mathcal{I} = q_{i_1} ... q_{i_m}$. Indexes may be omitted and repeated.
+
+A **partial solution** means that $p_\mathcal{I}$ starts with $q_\mathcal{I}$ or vice-versa.
+
+### Semi-Thue System (STS)
+
+A system that transforms words for some reason. It has a bunch of rules $R$ that let you replace strings with other strings.
+
+For some reason $R$ isn't enough, you also need the alphabet, so you have to write $G = (\Sigma, R)$.
+
+When given a string of letters, you just non-deterministically pick a rule from $R$ and apply it until you're happy. See example below somewhere.
+
+![STS example](img/sts.png)
+
+### Post Normal System (PNS)
+
+Similar to STS, except you always chomp letters off the front of your string and append the rule production to the end. Example is also somewhere here.
+
+![PNS example](img/pns.png)
+
+
+\gotchas
+
+* The letter $P$ is decidedly overused.
+* Again, what's the point behind the PCP? Who even needs motivation!
+* The lecture uses $I$ instead of a fancy $\mathcal{I}$, but that's way too confusable, especially in subscripts. Like, try telling these apart: $p_I p_l p_1 p_i$
+* Who in blazes is Thue?
 
 
 # Complexity

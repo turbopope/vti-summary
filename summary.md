@@ -17,12 +17,20 @@ header-includes:
 
 * If the `else` is actually required in LOOP, why is there no no-op statement?
 
-* Do I need to zero out “unused” registers that I don't want to output?
+* Do I need to zero out “unused” registers that I don't want to output? **A: Yes. Write moar code.**
 
-* How do I call sub-programs in LOOP/WHILE/GOTO? How do I call subroutines in Pseudocode?
+* How do I call sub-programs in LOOP/WHILE/GOTO? **A: Check 2014 exam solutions.**
+
+* When proving something about recursion, can I use an equivalent WHILE/LOOP/TM instead? **A: Yes. Explain why you're doing it and off you go.**
 
 
 # Introduction
+
+\gotchas
+
+> The introduction slides are wrong and should be ignored.
+>
+> -- From the Q&A session
 
 
 # Turing Machines and Computability
@@ -148,6 +156,7 @@ I'm going by the [official register machine definitions](https://userpages.uni-k
 * The syntax is horrible and completely unreadable.
 * Also what even is the idea behind primitive recursion?
 * Dito for $\mu$ recursion. It's like they entered our world from the Æther and nobody knows how they came to be.
+* Numbers turn into $0$ instead of going negative, even intermediate results. Enjoy figuring that out.
 
 
 # Computability and (Un-)Decidability
@@ -176,9 +185,9 @@ Proving things like exercise 9.4 is super easy:
 
 ## Logic
 
-The set of valid formulas in propositional logic (Aussagenlogik) is decidable.
+The set of valid formuli in propositional logic (Aussagenlogik) is decidable.
 
-The set of valid formulas in first-order logic (Prädikatenlogik) is undecidable. Proof was like you can simulate a TM with it or something and therefore it's undecidable.
+The set of valid formuli in first-order logic (Prädikatenlogik) is undecidable. Proof was like you can simulate a TM with it or something and therefore it's undecidable.
 
 ## Post Correspondence Problem (PCP)
 

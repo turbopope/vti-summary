@@ -211,6 +211,7 @@ Similar to STS, except you always chomp letters off the front of your string and
 * Again, what's the point behind the PCP? Who even needs motivation!
 * The lecture uses $I$ instead of a fancy $\mathcal{I}$, but that's way too confusable, especially in subscripts. Like, try telling these apart: $p_I p_l p_1 p_i$
 * Who in blazes is Thue?
+* Lecture: the proof will not be presented here because it is too long. -- *Proceeds to fill the next 21 pages with the proof*
 
 
 # Complexity
